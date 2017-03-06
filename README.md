@@ -1,0 +1,2 @@
+# daidu
+learn javascript
