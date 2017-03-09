@@ -11,10 +11,11 @@
 <!--   
     <li>第一名：福州（样例），10</li>
       <li>第二名：福州（样例），10</li> -->
+
   </ul>
 
 <script type="text/javascript">
-
+var oUl = document.getElementById('aqi-list');
 var aqiData = [
   ["北京", 90],
   ["上海", 50],
@@ -24,11 +25,25 @@ var aqiData = [
   ["西安", 100]
 ];
 
-aqiDate.sort(function (x,y){
-  return x[0]-y[0]
-});
-  alert(aqiDate);
+//按照二维数组的第二个值降序排列
+function ascend(x,y){
+  return y[1]-x[1];     
+}
+//console.log(aqiData.sort(ascend));
+//排序好的新数组赋值给一个新的变量
+var newData = aqiData.sort(ascend);
 
+
+ 
+for (var i = 0; i < newData.length; i++) {
+  //创建新节点
+  var oLi = document.createElement('li');
+  
+  oLi.innerHTML = '第'+[i+1]+'名：'+newData[i];
+  //把创建的节点oLi添加到oUl节点的子节点列表的末尾上
+  oUl.appendChild(oLi);
+   
+}
 </script>
 </body>
 </html>
