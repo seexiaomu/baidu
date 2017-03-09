@@ -27,7 +27,9 @@ function descend(a,b){
 }
 console.log(arr1.sort(ascend));     //[ 0, 0, 1, 10, 16, 3, 3, 5, 9 ]
 console.log(arr1.sort(descend));    //[ 16, 10, 9, 5, 3, 3, 1, 0, 0 ]
-```对二维数组进行排序<br><br>
+```
+对二维数组进行排序<br><br>
+
 ```
 var arr1 = [[4,5,7],[11,3,6,100,77],[12,9,12,10],[3,1,2,99,22]];
 function ascend(x,y){
