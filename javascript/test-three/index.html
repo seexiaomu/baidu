@@ -7,13 +7,13 @@
 <body>
 
   <ul id="source">
-    <li>北京空气质量：<b>90</b></li>
-    <li>上海空气质量：<b>70</b></li>
-    <li>天津空气质量：<b>80</b></li>
-    <li>广州空气质量：<b>50</b></li>
-    <li>深圳空气质量：<b>40</b></li>
-    <li>福州空气质量：<b>32</b></li>
-    <li>成都空气质量：<b>90</b></li>
+    <li><span>北京空气质量：</span><b>90</b></li>
+    <li><span>上海空气质量：</span><b>70</b></li>
+    <li><span>天津空气质量：</span><b>80</b></li>
+    <li><span>广州空气质量：</span><b>50</b></li>
+    <li><span>深圳空气质量：</span><b>40</b></li>
+    <li><span>福州空气质量：</span><b>32</b></li>
+    <li><span>成都空气质量：</span><b>90</b></li>
   </ul>
 
   <ul id="resort">
@@ -28,6 +28,9 @@
   <button id="sort-btn">排序</button>
 
 <script type="text/javascript">
+var resort = document.getElementById('resort')
+var sourceLi = document.getElementById('source').getElementsByTagName('li');
+var btn = document.getElementById('sort-btn');
 
 /**
  * getData方法
@@ -35,21 +38,22 @@
  * 返回一个数组，格式见函数中示例
  */
 function getData() {
-  /*
-  coding here
-  */
+  var data = new Array();    //先声明一维数组
+  for (var k=0; k<sourceLi.length; k++){
+    //获取来源地址
+    var souAdress = sourceLi[k].getElementsByTagName('span')[0];
+    //获取来源质量
+    var souMass = sourceLi[k].getElementsByTagName('b')[0];
 
-  /*
-  data = [
-    ["北京", 90],
-    ["北京", 90]
-    ……
-  ]
-  */
-
+    data.push([souAdress,souMass]);
+  }
+  // 以下可以遍历输出data二维数组；
+  // for(var i=0; i<data.length; i++){
+  //   alert(data[i][0].innerHTML+data[i][1].innerHTML);
+  // }
   return data;
-
 }
+
 
 /**
  * sortAqiData
@@ -57,7 +61,11 @@ function getData() {
  * 返回一个排序后的数组
  */
 function sortAqiData(data) {
-
+  function ascend (x,y){
+    return y[1]-x[1];     //降序
+  }
+  data = data.sort(ascend);
+  return data;
 }
 
 /**
@@ -66,7 +74,11 @@ function sortAqiData(data) {
  * 格式见ul中的注释的部分
  */
 function render(data) {
-
+  for (var i=0; i<data.length; i++){
+    var oLi = document.createElement('li');
+    oLi.innerHTML = "第"+[i+1]+"名："+data[i][0].innerHTML+data[i][1].innerHTML;
+    resort.appendChild(oLi);
+  }
 }
 
 function btnHandle() {
@@ -76,9 +88,12 @@ function btnHandle() {
 }
 
 function init() {
-
   // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
-
+  btn.onclick = function (){
+    btnHandle();
+    //禁止鼠标点击
+    btn.disabled = true;
+  }
 }
 
 init();

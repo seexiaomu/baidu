@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mu的练习铺</title>
+	<script>
+		var a = {
+			data:Array(),
+			get:function(key){
+				return this.data[key];
+			},
+			set:function(key,value){
+				this.data[key] = value;
+				return;
+			}
+		}
+		a.set('k1','abc');
+		a.set('k2',[0,1,2,3,4,5]);
+		a.set('k3',{"kk1":"vv1","kk2":"vv2"});
+
+		alert(a.get('k1'));		//abc
+		alert(a.get('k2'));		//0,1,2,3,4,5
+		alert(a.get('k3'));		//[object Object]
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
