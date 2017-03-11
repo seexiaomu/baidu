@@ -45,6 +45,8 @@
 			cursor: pointer;
 		}
 	</style>
+	<!-- 弱点删除当前点击节点，代码97-107 -->
+	<!-- e.target是指事件是哪个元素触发的 -->
 	<script>
 		window.onload = function (){
 			var num = document.getElementById('number');
@@ -94,13 +96,16 @@
 			}
 			
 			//删除当前点击的元素
-			for (var i = 0; i < allLi.length; i++) {
-				allLi[i].onclick = function (){
-					alert(this.innerHTML);
-					oList.removeChild(this);					
-				}
+			// for (var i = 0; i < allLi.length; i++) {
+			// 	allLi[i].onclick = function (){
+			// 		alert(this.innerHTML);
+			// 		oList.removeChild(this);					
+			// 	}
+			// }
+			oList.onclick = function (e){
+				alert(e.target.innerHTML)
+				oList.removeChild(e.target);
 			}
-			
 			//点击事件
 			rightIn.onclick = leftIn.onclick = createNode;
 			rightOut.onclick = leftOut.onclick = moveNode;
