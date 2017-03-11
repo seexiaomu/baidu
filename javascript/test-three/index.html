@@ -39,13 +39,18 @@ var btn = document.getElementById('sort-btn');
  */
 function getData() {
   var data = new Array();    //先声明一维数组
+  var souAdress = null;
+  var souMass = null
   for (var k=0; k<sourceLi.length; k++){
+    var childList = [];
     //获取来源地址
-    var souAdress = sourceLi[k].getElementsByTagName('span')[0];
+    souAdress = sourceLi[k].getElementsByTagName('span')[0];
     //获取来源质量
-    var souMass = sourceLi[k].getElementsByTagName('b')[0];
+    souMass = sourceLi[k].getElementsByTagName('b')[0];
+    childList.push(souAdress.innerHTML);
+    childList.push(souMass.innerHTML)
+    data.push(childList);
 
-    data.push([souAdress,souMass]);
   }
   // 以下可以遍历输出data二维数组；
   // for(var i=0; i<data.length; i++){
@@ -65,6 +70,14 @@ function sortAqiData(data) {
     return y[1]-x[1];     //降序
   }
   data = data.sort(ascend);
+  alert(data);
+  // for(var i=0; i<data.length; i++){
+  //   if(data[i][1]<data[i+1][1]) {
+  //     var t = data[i];
+  //     data[i] = data[i+1];
+  //     data[i+1] = t;
+  //   }
+  // }
   return data;
 }
 
@@ -76,7 +89,7 @@ function sortAqiData(data) {
 function render(data) {
   for (var i=0; i<data.length; i++){
     var oLi = document.createElement('li');
-    oLi.innerHTML = "第"+[i+1]+"名："+data[i][0].innerHTML+data[i][1].innerHTML;
+    oLi.innerHTML = "第"+[i+1]+"名："+data[i][0]+data[i][1];
     resort.appendChild(oLi);
   }
 }
