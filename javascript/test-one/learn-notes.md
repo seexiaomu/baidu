@@ -1,4 +1,4 @@
-##获取元素
+## 获取元素
  *  `document.getElementById`:
     * 语法：oElement = document .getElementById ( sID );
     * 参数：sID――必选项。字符串 (String) 。
@@ -20,7 +20,7 @@
    *  `document.getElementsByName()`:
       * 根据控件名称获取这个控件对象，因为控件名称可以相同，返回的是一个对象数组,结合表单控件一起使用。
       
-##innerText、innerHTML和value的区别
+## innerText、innerHTML和value的区别
       1、innerText是id为object的闭合标签内的文本,输入输出的是转义文本(字符串);(label控件用innerText有效)
       2.innerHtml是\<div\>标签内的文本,输入输出到该DOM内部纯HTML代码(流);(获得td、div等html元素时候,它们是没有value或是text属性,只能用innerHtml) 
       3.value是表单元素特有的属性,输入输出的是转义文本(字符串);(注: Text控件用value有效)
