@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>test-five</title>
+	<title>test-six</title>
 	<style>
 		*{
 			margin: 0;
@@ -34,16 +34,15 @@
 		#list {
 			overflow: hidden;
 			list-style-type: none;
-			margin-top: 10px;
+			margin-top: 8px;
 		}
 		#list li{
 			float: left;
 			background-color: red;
-			/*color: #fff;*/
+			padding: 5px 6px;
+			margin-right: 6px;
+			color: #fff;
 			cursor: pointer;
-			/*padding: 5px 6px;*/
-			margin-right: 2px;
-			width: 20px;
 		}
 	</style>
 	<!-- 弱点删除当前点击节点，代码97-107 -->
@@ -61,7 +60,6 @@
 			function createNode(){
 				var oLi = document.createElement('li');
 				oLi.innerHTML = num.value;
-				oLi.style.height = num.value+"px";
 				//使input的value值赋值后变为空，需要重新输入
 				num.value = null;
 				//判断值为空时不能插入节点
@@ -77,47 +75,9 @@
 				}
 				else return false;	
 			}
-			//删除节点removeChild()，并按不同的方向删除
-			function moveNode (){
-				//判断是否还可以删除；
-				if(allLi.length!=0){
-					if(this==rightOut){
-						alert(allLi[allLi.length-1].innerHTML);
-						//删除指定节点
-						oList.removeChild(allLi[allLi.length-1]);	
-					}
-					if(this==leftOut){
-						alert(allLi[0].innerHTML);
-						//删除oList的第一个子节点
-						oList.removeChild(allLi[0]);				
-					}
-				}
-				if(allLi.length==0){
-					return false;
-				}	
-			}
 			
-			oList.onclick = function (e){
-				alert(e.target.innerHTML)
-				oList.removeChild(e.target);
-			}
 			//点击事件
-			rightIn.onclick = leftIn.onclick = createNode;
-			rightOut.onclick = leftOut.onclick = moveNode;	
-
-			// js控制input输入大小
-			num.onkeyup = function (){
-				this.value = this.value.replace(/\D/g,'');
-				function test (){
-					if(num.value>300) {
-						num.value = 300;
-					}
-					if(num.value<10) {
-						num.value = 10;
-					}
-				}
-				setTimeout(test,2000);
-			};
+			rightIn.onclick = leftIn.onclick = createNode;	
 		};
 	</script>
 </head>
@@ -131,9 +91,9 @@
 	</div>
 	<div>
 		<ul id="list">
-			<!-- <li>20</li>
+			<li>20</li>
 			<li>12</li>
-			<li>54</li> -->
+			<li>54</li>
 		</ul>
 	</div>
 
