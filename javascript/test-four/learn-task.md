@@ -1,9 +1,9 @@
-##任务目的
+## 任务目的
 * 学习与实践JavaScript的基本语法、语言特性
 * 初步了解JavaScript的事件是什么
 * 初步了解JavaScript中的DOM是什么
 
-##任务描述
+## 任务描述
 * 如下图模拟一个队列，队列的每个元素是一个数字，初始队列为空 <br><br>
 ![](https://github.com/seexiaomu/baidu/blob/master/javascript/test-four/pic.jpg)
 <br>
