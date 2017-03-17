@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test-four</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			margin: 50px;
+		}
+		#div-one input {
+			border: 1px solid lightgray;
+			line-height: 20px;
+			height: 20px;
+		}
+		#div-one span {
+			width: 46px;
+			height: 20px;
+			line-height: 20px;
+			border-radius: 4px;
+			text-align: center;
+			border: 1px solid lightgray;
+			display: inline-block;
+			font-size: 12px;
+			margin-left: 4px;
+			cursor: pointer;
+		}
+		#div-one #left-out {
+			margin-left: 20px;
+		}
+		#list {
+			overflow: hidden;
+			list-style-type: none;
+			margin-top: 10px;
+		}
+		#list li{
+			float: left;
+			background-color: red;
+			/*color: #fff;*/
+			cursor: pointer;
+			/*padding: 5px 6px;*/
+			margin-right: 2px;
+			width: 20px;
+		}
+	</style>
+	<!-- 弱点删除当前点击节点，代码97-107 -->
+	<!-- e.target是指事件是哪个元素触发的 -->
+	<script>
+		window.onload = function (){
+			var num = document.getElementById('number');
+			var rightIn = document.getElementById('right-in');
+			var rightOut = document.getElementById('right-out');
+			var leftIn = document.getElementById('left-in');
+			var leftOut = document.getElementById('left-out');
+			var oList = document.getElementById('list');
+			var allLi = oList.getElementsByTagName('li');
+			//新建节点，并将input输入的值传到新建的节点里面
+			function createNode(){
+				var oLi = document.createElement('li');
+				oLi.innerHTML = num.value;
+				oLi.style.height = num.value+"px";
+				//使input的value值赋值后变为空，需要重新输入
+				num.value = null;
+				//判断值为空时不能插入节点
+				if(oLi.innerHTML){
+					//判断进入的方法来执行不同的语句
+					if(this==rightIn){
+						oList.appendChild(oLi);
+					} 
+					if(this==leftIn){					
+						//把新创的节点加在ul的第一位
+						oList.insertBefore(oLi,allLi[0]);
+					}
+				}
+				else return false;	
+			}
+			//删除节点removeChild()，并按不同的方向删除
+			function moveNode (){
+				//判断是否还可以删除；
+				if(allLi.length!=0){
+					if(this==rightOut){
+						alert(allLi[allLi.length-1].innerHTML);
+						//删除指定节点
+						oList.removeChild(allLi[allLi.length-1]);	
+					}
+					if(this==leftOut){
+						alert(allLi[0].innerHTML);
+						//删除oList的第一个子节点
+						oList.removeChild(allLi[0]);				
+					}
+				}
+				if(allLi.length==0){
+					return false;
+				}	
+			}
+			
+			oList.onclick = function (e){
+				alert(e.target.innerHTML)
+				oList.removeChild(e.target);
+			}
+			//点击事件
+			rightIn.onclick = leftIn.onclick = createNode;
+			rightOut.onclick = leftOut.onclick = moveNode;	
+
+			// js控制input输入大小
+			num.onkeyup = function (){
+				this.value = this.value.replace(/\D/g,'');
+				function test (){
+					if(num.value>300) {
+						num.value = 300;
+					}
+					if(num.value<10) {
+						num.value = 10;
+					}
+				}
+				setTimeout(test,2000);
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="div-one">
+		<input type="number" id="number">
+		<span id="left-in">左侧入</span>
+		<span id="right-in">右侧入</span>
+		<span id="left-out">左侧出</span>
+		<span id="right-out">右侧出</span>
+	</div>
+	<div>
+		<ul id="list">
+			<!-- <li>20</li>
+			<li>12</li>
+			<li>54</li> -->
+		</ul>
+	</div>
+
+</body>
+</html>
