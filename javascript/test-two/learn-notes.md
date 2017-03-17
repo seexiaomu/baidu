@@ -1,6 +1,6 @@
-###JS中的二维数组
-######1.二维数组的本质：数组中的元素又是数组
-######2.二维数组的初始化
+### JS中的二维数组
+###### 1.二维数组的本质：数组中的元素又是数组
+###### 2.二维数组的初始化
 ```
 var arr = [[1,2],[a,b]];
   alert(arr[1][0]); //a 第2列第1行所在的元素
@@ -10,8 +10,8 @@ var arr = [[1,2],[a,b]];
 var arr = new array(new array(1,2),new array("a","b"));
 alert(arr[1][0]);
 ```
-###JavaScript中数组排序方法
-######1.sort()方法使用
+### JavaScript中数组排序方法
+###### 1.sort()方法使用
 sort方法并不像我们想的那么容易使用，不是单纯的arr.sort()就行了，需要我们定义里面的回调函数！因为sort()方法默认情况下按照升序排列数组项，sort()方法会调用toString()转型方法，然后比较得到的字符串，即使我们比较的是数字，他也会把数字转为字符串以后再排序。<br><br>对一维数组进行排序<br><br>
 ```
 var arr1 = [0, 1, 3, 10, 16, 5, 9, 0, 3];
@@ -41,7 +41,7 @@ function descend(x,y){
 console.log(arr1.sort(ascend));
 console.log(arr1.sort(descend));
 ```
-######2.reverse()方法
+###### 2.reverse()方法
 reverse方法会反转数组项的顺序，请看如下示例：<br><br>
 ```
 var arr1 = [0, 1, 3, 10, 16, 5, 9, 0, 3];
