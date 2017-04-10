@@ -11,10 +11,16 @@
 		body {
 			margin: 50px;
 		}
+		#div-one textarea {
+			border: 1px solid lightgray;
+			line-height: 24px;
+			min-height: 100px;
+			width: 300px;
+		}
 		#div-one input {
 			border: 1px solid lightgray;
-			line-height: 20px;
-			height: 20px;
+			line-height: 24px;
+			width: 300px;
 		}
 		#div-one span {
 			width: 46px;
@@ -28,74 +34,52 @@
 			margin-left: 4px;
 			cursor: pointer;
 		}
-		#div-one #left-out {
-			margin-left: 20px;
-		}
-		#list {
+		#getTxt {
+			width: 500px;
 			overflow: hidden;
-			list-style-type: none;
-			margin-top: 8px;
-		}
-		#list li{
-			float: left;
-			background-color: red;
-			padding: 5px 6px;
-			margin-right: 6px;
+			background-color: lightgray;
+			border-radius: 4px;
 			color: #fff;
-			cursor: pointer;
+			margin: 20px 0 20px 0;
+			padding: 8px 4px;
 		}
 	</style>
-	<!-- 弱点删除当前点击节点，代码97-107 -->
-	<!-- e.target是指事件是哪个元素触发的 -->
 	<script>
 		window.onload = function (){
-			var num = document.getElementById('number');
-			var rightIn = document.getElementById('right-in');
-			var rightOut = document.getElementById('right-out');
-			var leftIn = document.getElementById('left-in');
-			var leftOut = document.getElementById('left-out');
-			var oList = document.getElementById('list');
-			var allLi = oList.getElementsByTagName('li');
-			//新建节点，并将input输入的值传到新建的节点里面
-			function createNode(){
-				var oLi = document.createElement('li');
-				oLi.innerHTML = num.value;
-				//使input的value值赋值后变为空，需要重新输入
-				num.value = null;
-				//判断值为空时不能插入节点
-				if(oLi.innerHTML){
-					//判断进入的方法来执行不同的语句
-					if(this==rightIn){
-						oList.appendChild(oLi);
-					} 
-					if(this==leftIn){					
-						//把新创的节点加在ul的第一位
-						oList.insertBefore(oLi,allLi[0]);
+			var txt = document.getElementById('text');
+			var gtxt = document.getElementById('getTxt');
+			var btn = document.getElementById('buttoned');
+			var test = document.getElementById('tested');
+			var btnTwo = document.getElementById('buttoned-two');
+			btn.onclick = function (){
+				//textarea中包含的文本需要value属性来获取
+				gtxt.innerHTML = gtxt.innerHTML + txt.value;
+				txt.value = null;
+			};
+			
+			btnTwo.onclick = function (){
+				//split()方法把字符串分割成字符串数组
+				var arrOne = gtxt.innerHTML.split('');
+				var arrTwo = test.value.split('');
+				var reg = new RegExp(arrTwo);
+				for (let i = 0; i < arrOne.length; i++) {
+					if (arrOne.match(reg)) {
+						alert(reg[i]);
 					}
 				}
-				else return false;	
 			}
-			
-			//点击事件
-			rightIn.onclick = leftIn.onclick = createNode;	
 		};
 	</script>
 </head>
 <body>
 	<div id="div-one">
-		<input type="number" id="number">
-		<span id="left-in">左侧入</span>
-		<span id="right-in">右侧入</span>
-		<span id="left-out">左侧出</span>
-		<span id="right-out">右侧出</span>
+		<textarea id="text">js前端实现模糊查询</textarea>
+		<span id="buttoned">添加</span>
 	</div>
-	<div>
-		<ul id="list">
-			<li>20</li>
-			<li>12</li>
-			<li>54</li>
-		</ul>
+	<p id="getTxt"></p>
+	<div id="div-one">
+		<input id="tested" type="text" value="实现">
+		<span id="buttoned-two">验证</span>
 	</div>
-
 </body>
 </html>
